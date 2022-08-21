@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Pairs {
     //    Given an array of integers and a target value, determine the number of pairs of array elements that have a difference equal to the
@@ -33,7 +34,35 @@ namespace Pairs {
 
     class Program {
         static void Main(string[] args) {
-            Console.WriteLine("Hello World!");
+            
+            Console.WriteLine(pairs(1, new List<int>() { 1, 2, 3, 4 })); //Expected: 3
+            Console.WriteLine(pairs(2, new List<int>() { 1, 5, 3, 4, 2 })); //Expected: 3
+            Console.WriteLine(pairs(1, new List<int>() { 363374326, 364147530, 61825163, 1073065718, 1281246024, 
+                                                        1399469912, 428047635, 491595254, 879792181, 1069262793 })); //Expected: 0
+            Console.WriteLine(pairs(2, new List<int>() { 1, 3, 5, 8, 6, 4, 2 })); //Expected: 5
         }
+
+        public static int pairs(int k, List<int> arr) {
+            Dictionary<int, string> hMap = new Dictionary<int, string>();
+            int count = 0;
+
+            arr.Sort();
+
+            foreach (var item in arr) {
+
+                int complement = item + k;
+
+                if (hMap.ContainsKey(item)) {
+                    count++;
+                    hMap[complement] = "foo1";
+                } else {
+                    hMap[complement] = "foo2";
+                }
+
+            }
+
+            return count;
+        }
+
     }
 }
