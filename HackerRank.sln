@@ -63,7 +63,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MergeTwoSortedLinkedLists",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TreePreOrderTraversal", "TreePreOrderTraversal\TreePreOrderTraversal.csproj", "{716023B2-428A-433E-92DA-AAA709C61141}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QueueUsingTwoStacks", "QueueUsingTwoStacks\QueueUsingTwoStacks.csproj", "{4F6F2480-27CB-4656-9BCA-EBACF1B62EA7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QueueUsingTwoStacks", "QueueUsingTwoStacks\QueueUsingTwoStacks.csproj", "{4F6F2480-27CB-4656-9BCA-EBACF1B62EA7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pairs", "Pairs\Pairs.csproj", "{8AE683A1-D594-482D-9012-4050A3D1279D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -195,6 +197,10 @@ Global
 		{4F6F2480-27CB-4656-9BCA-EBACF1B62EA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4F6F2480-27CB-4656-9BCA-EBACF1B62EA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4F6F2480-27CB-4656-9BCA-EBACF1B62EA7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8AE683A1-D594-482D-9012-4050A3D1279D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AE683A1-D594-482D-9012-4050A3D1279D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AE683A1-D594-482D-9012-4050A3D1279D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AE683A1-D594-482D-9012-4050A3D1279D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
