@@ -20,17 +20,20 @@ namespace Pairs {
     //Returns
     //int: the number of pairs that satisfy the criterion
 
-//Sample Input
-//STDIN Function
-//-----       --------
-//5 2         arr[] size n = 5, k =2
-//1 5 3 4 2   arr = [1, 5, 3, 4, 2]
+    //Sample Input
+    //STDIN Function
+    //-----       --------
+    //5 2         arr[] size n = 5, k =2
+    //1 5 3 4 2   arr = [1, 5, 3, 4, 2]
 
-//Sample Output
-//3
+    //Sample Output
+    //3
 
-//Explanation
-//There are 3 pairs of integers in the set with a difference of 2: [5,3], [4,2] and[3, 1]. .
+    //Explanation
+    //There are 3 pairs of integers in the set with a difference of 2: [5,3], [4,2] and[3, 1]. .
+
+//Constraints
+//each integer arr[i] will be unique
 
     class Program {
         static void Main(string[] args) {
@@ -43,13 +46,32 @@ namespace Pairs {
         }
 
         public static int pairs(int k, List<int> arr) {
+            HashSet<int> hSet = new HashSet<int>();
+            int count = 0;
+
+            arr.Sort();
+
+            foreach (var item in arr) {
+                int complement = item + k;
+
+                if (hSet.Contains(item)) {
+                    count++;
+                    hSet.Add(complement);
+                } else {
+                    hSet.Add(complement);
+                }
+            }
+
+            return count;
+        }
+
+        public static int pairs2(int k, List<int> arr) {
             Dictionary<int, string> hMap = new Dictionary<int, string>();
             int count = 0;
 
             arr.Sort();
 
             foreach (var item in arr) {
-
                 int complement = item + k;
 
                 if (hMap.ContainsKey(item)) {
@@ -58,7 +80,6 @@ namespace Pairs {
                 } else {
                     hMap[complement] = "foo2";
                 }
-
             }
 
             return count;
