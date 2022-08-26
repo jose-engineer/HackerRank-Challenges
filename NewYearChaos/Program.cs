@@ -5,7 +5,7 @@ namespace NewYearChaos {
     //It is New Year's Day and people are in line for the Wonderland rollercoaster ride. Each person wears a sticker indicating
     //their initial position in the queue from 1 to n. Any person can bribe the person directly in front of them to swap positions,
     //but they still wear their original sticker. One person can bribe at most two others.
-    //Determine the minimum number of bribes that took place to get to a given queue order.Print the number of bribes, or,
+    //Determine the minimum number of bribes that took place to get to a given queue order. Print the number of bribes, or,
     //if anyone has bribed more than two people, print Too chaotic.
     //Example:
     // q = [1,2,3,5,4,6,7,8]
@@ -31,7 +31,7 @@ namespace NewYearChaos {
 
             for (int i = q.Count - 1; i >= 0; i--) {    //[1 2 5 3 7 8 6 4]
                                                         // 0 1 2 3 4 5 6 7            
-                if (q[i] != i + 1) { //4 != 8
+                if (q[i] != i + 1) { // 4 != 7 + 1 
                     if (q[i - 1] == i + 1) {
                         int temp = q[i - 1];
                         q[i - 1] = q[i];//[1 2 5 3 4 4 6 6]
@@ -85,10 +85,10 @@ namespace NewYearChaos {
             }
         }
 
-        public static void Swap(List<int> lst, int first, int second) {
-            int temp = lst[first];
-            lst[first] = lst[second];
-            lst[second] = temp;
+        public static void Swap(List<int> lst, int index1, int index2) {
+            int temp = lst[index1];
+            lst[index1] = lst[index2];
+            lst[index2] = temp;
         }        
     }
 }

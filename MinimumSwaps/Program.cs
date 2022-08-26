@@ -34,10 +34,10 @@ namespace MinimumSwaps
             return count;
         }
 
-        static void Swap(int[] arr, int num1, int num2) {
-            int temp = arr[num1];
-            arr[num1] = arr[num2];
-            arr[num2] = temp;
+        static void Swap(int[] arr, int index1, int index2) {
+            int temp = arr[index1];
+            arr[index1] = arr[index2];
+            arr[index2] = temp;
         }
 
     }
