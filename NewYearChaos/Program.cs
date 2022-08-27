@@ -27,31 +27,31 @@ namespace NewYearChaos {
         }
 
         public static void minimumBribes(List<int> q) {
-            int swaps = 0;
+            int count = 0;
 
-            for (int i = q.Count - 1; i >= 0; i--) {    //[1 2 5 3 7 8 6 4]
+            for (int i = q.Count-1; i >= 0; i--) {    //[1 2 5 3 7 8 6 4]
                                                         // 0 1 2 3 4 5 6 7            
-                if (q[i] != i + 1) { // 4 != 7 + 1 
-                    if (q[i - 1] == i + 1) {
-                        int temp = q[i - 1];
-                        q[i - 1] = q[i];//[1 2 5 3 4 4 6 6]
+                if (q[i] != i+1) { // 4 != 7 + 1 
+                    if (q[i-1] == i+1) {
+                        int temp = q[i-1];
+                        q[i-1] = q[i];//[1 2 5 3 4 4 6 6]
                         q[i] = temp;    //[1 2 5 3 4 6 6 6]
-                        //Swap(q, i, i - 1);
-                        swaps += 1;
-                    } else if (q[i - 2] == i + 1) {
-                        q[i - 2] = q[i - 1]; //8 = 6  [1 2 5 3 7 6 6 4]   [1 2 5 3 6 6 4 6]     [1 2 3 3 4 6 6 6]   
-                        q[i - 1] = q[i]; //6 = 4      [1 2 5 3 7 6 4 4]   [1 2 5 3 6 4 4 6]     [1 2 3 4 4 6 6 6]
-                        q[i] = q[i - 2]; //4 = 6      [1 2 5 3 7 6 4 6]   [1 2 5 3 6 4 6 6]     [1 2 3 4 3 6 6 6]
-                        //Swap(q, i, i - 1);
-                        //Swap(q, i, i - 2);
-                        swaps += 2;
+                        //Swap(q, i-1, i);
+                        count += 1;
+                    } else if (q[i-2] == i+1) {
+                        q[i-2] = q[i-1]; //8 = 6  [1 2 5 3 7 6 6 4]   [1 2 5 3 6 6 4 6]     [1 2 3 3 4 6 6 6]   
+                        q[i-1] = q[i]; //6 = 4      [1 2 5 3 7 6 4 4]   [1 2 5 3 6 4 4 6]     [1 2 3 4 4 6 6 6]
+                        q[i] = q[i-2]; //4 = 6      [1 2 5 3 7 6 4 6]   [1 2 5 3 6 4 6 6]     [1 2 3 4 3 6 6 6]
+                        //Swap(q, i-1, i);
+                        //Swap(q, i-2, i);
+                        count += 2;
                     } else {
                         Console.WriteLine("Too chaotic");
                         return;
                     }
                 }
             }
-            Console.WriteLine(swaps);
+            Console.WriteLine(count);
         }
 
         public static void minimumBribes2(List<int> q) {
