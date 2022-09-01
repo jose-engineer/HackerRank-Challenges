@@ -53,8 +53,8 @@ namespace TransactionLogs
             Dictionary<string, int> hMap = new Dictionary<string, int>();
 
             foreach (var item in logs) {
-
                 string[] arr = item.Split(' ');
+
                 if (hMap.ContainsKey(arr[0])) {
                     hMap[arr[0]]++;
                 } else {
@@ -68,7 +68,6 @@ namespace TransactionLogs
                         hMap[arr[1]] = 1;
                     }
                 }
-
             }
 
             return hMap.Where(x => x.Value >= threshold).Select(x => x.Key).ToList();
@@ -82,6 +81,7 @@ namespace TransactionLogs
             foreach (var item in logs)
             {
                 string[] arr = item.Split(' ');
+
                 if (hMap.ContainsKey(arr[0])) {
                     hMap[arr[0]]++;
                 } else {
