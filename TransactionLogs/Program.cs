@@ -50,65 +50,65 @@ namespace TransactionLogs
 
         public static List<string> ProcessLogs(List<string> logs, int threshold) {
 
-            Dictionary<string, int> map = new Dictionary<string, int>();
+            Dictionary<string, int> HMap = new Dictionary<string, int>();
 
             foreach (var item in logs) {
 
                 string[] arr = item.Split(' ');
                 for (int i = 1; i < arr.Length - 1; i++) {
                     if (arr[i - 1] == arr[i]) {
-                        if (map.ContainsKey(arr[i])) {
-                            map[arr[i]]++;
+                        if (HMap.ContainsKey(arr[i])) {
+                            HMap[arr[i]]++;
                         } else {
-                            map[arr[i]] = 1;
+                            HMap[arr[i]] = 1;
                         }
                     } else {
-                        if (map.ContainsKey(arr[i - 1])) {
-                            map[arr[i - 1]]++;
+                        if (HMap.ContainsKey(arr[i - 1])) {
+                            HMap[arr[i - 1]]++;
                         } else {
-                            map[arr[i - 1]] = 1;
+                            HMap[arr[i - 1]] = 1;
                         }
 
-                        if (map.ContainsKey(arr[i])) {
-                            map[arr[i]]++;
+                        if (HMap.ContainsKey(arr[i])) {
+                            HMap[arr[i]]++;
                         } else {
-                            map[arr[i]] = 1;
+                            HMap[arr[i]] = 1;
                         }
                     }
                 }
 
             }
 
-            return map.Where(x => x.Value >= threshold).Select(x => x.Key).ToList();
+            return HMap.Where(x => x.Value >= threshold).Select(x => x.Key).ToList();
         }
 
         public static List<string> ProcessLogs2(List<string> logs, int threshold)
         {
-            List<string> userIds = new List<string>();
-            Dictionary<string, int> map = new Dictionary<string, int>();
+            List<string> result = new List<string>();
+            Dictionary<string, int> hMap = new Dictionary<string, int>();
 
             foreach (var log in logs)
             {
                 string[] items = log.Split(' ');
                 int count;
-                map.TryGetValue(items[0], out count);
+                hMap.TryGetValue(items[0], out count);
                 count++;
-                map[items[0]] = count;
+                hMap[items[0]] = count;
 
                 if (items[0] != items[1])
                 {
                     int count2;
-                    map.TryGetValue(items[1], out count2);
+                    hMap.TryGetValue(items[1], out count2);
                     count2++;
-                    map[items[1]] = count2;
+                    hMap[items[1]] = count2;
                 }
             }
 
-            foreach (var item in map)
+            foreach (var item in hMap)
             {
                 if (item.Value >= threshold )
                 {
-                    userIds.Add(item.Key);
+                    result.Add(item.Key);
                 }
             }
 
@@ -126,7 +126,7 @@ namespace TransactionLogs
             //             select x)
             //             .ToList();            
 
-            return userIds;
+            return result;
         }
 
         //public static List<string> ProcessLogsLinq(List<string> logs, int threshold)
