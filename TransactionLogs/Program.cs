@@ -50,6 +50,79 @@ namespace TransactionLogs
 
         public static List<string> ProcessLogs(List<string> logs, int threshold) {
 
+            Dictionary<string, int> hMap = new Dictionary<string, int>();
+
+            foreach (var item in logs) {
+
+                string[] arr = item.Split(' ');
+                if (hMap.ContainsKey(arr[0])) {
+                    hMap[arr[0]]++;
+                } else {
+                    hMap[arr[0]] = 1;
+                }
+
+                if(arr[0] != arr[1]) {
+                    if (hMap.ContainsKey(arr[1])) {
+                        hMap[arr[1]]++;
+                    } else {
+                        hMap[arr[1]] = 1;
+                    }
+                }
+
+            }
+
+            return hMap.Where(x => x.Value >= threshold).Select(x => x.Key).ToList();
+        }        
+
+        public static List<string> ProcessLogs2(List<string> logs, int threshold)
+        {
+            List<string> result = new List<string>();
+            Dictionary<string, int> hMap = new Dictionary<string, int>();
+
+            foreach (var item in logs)
+            {
+                string[] arr = item.Split(' ');
+                int count;
+                hMap.TryGetValue(arr[0], out count);
+                count++;
+                hMap[arr[0]] = count;
+
+                if (arr[0] != arr[1])
+                {
+                    int count2;
+                    hMap.TryGetValue(arr[1], out count2);
+                    count2++;
+                    hMap[arr[1]] = count2;
+                }
+            }
+
+            foreach (var item in hMap)
+            {
+                if (item.Value >= threshold )
+                {
+                    result.Add(item.Key);
+                }
+            }
+
+            //userIds.Sort();
+
+            //userIds.Sort((a, b) => a.CompareTo(b)); //ascending order
+            //userIds.Sort((a, b) => b.CompareTo(a)); //descending order
+
+            //userIds.Reverse();
+
+            //userIds.OrderByDescending(x => x).ToList();
+
+            //var result = (from x in userIds
+            //             orderby x descending
+            //             select x)
+            //             .ToList();            
+
+            return result;
+        }
+
+        public static List<string> ProcessLogs3(List<string> logs, int threshold) {
+
             Dictionary<string, int> HMap = new Dictionary<string, int>();
 
             foreach (var item in logs) {
@@ -82,60 +155,13 @@ namespace TransactionLogs
             return HMap.Where(x => x.Value >= threshold).Select(x => x.Key).ToList();
         }
 
-        public static List<string> ProcessLogs2(List<string> logs, int threshold)
-        {
-            List<string> result = new List<string>();
-            Dictionary<string, int> hMap = new Dictionary<string, int>();
-
-            foreach (var log in logs)
-            {
-                string[] items = log.Split(' ');
-                int count;
-                hMap.TryGetValue(items[0], out count);
-                count++;
-                hMap[items[0]] = count;
-
-                if (items[0] != items[1])
-                {
-                    int count2;
-                    hMap.TryGetValue(items[1], out count2);
-                    count2++;
-                    hMap[items[1]] = count2;
-                }
-            }
-
-            foreach (var item in hMap)
-            {
-                if (item.Value >= threshold )
-                {
-                    result.Add(item.Key);
-                }
-            }
-
-            //userIds.Sort();
-
-            //userIds.Sort((a, b) => a.CompareTo(b)); //ascending order
-            //userIds.Sort((a, b) => b.CompareTo(a)); //descending order
-
-            //userIds.Reverse();
-
-            //userIds.OrderByDescending(x => x).ToList();
-
-            //var result = (from x in userIds
-            //             orderby x descending
-            //             select x)
-            //             .ToList();            
-
-            return result;
-        }
-
         //public static List<string> ProcessLogsLinq(List<string> logs, int threshold)
         //{
         //    List<string> userIds = new List<string>();
         //    Dictionary<string, int> map = new Dictionary<string, int>();
 
         //    var result = logs.Select(x => x.Split(' ').Take(2)).GroupBy(x => x).Select(c => new { Key = c.Key, total = c.Count() });
-              
+
 
         //    return userIds;
         //}
