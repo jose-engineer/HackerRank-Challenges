@@ -82,17 +82,18 @@ namespace TransactionLogs
             foreach (var item in logs)
             {
                 string[] arr = item.Split(' ');
-                int count;
-                hMap.TryGetValue(arr[0], out count);
-                count++;
-                hMap[arr[0]] = count;
+                if (hMap.ContainsKey(arr[0])) {
+                    hMap[arr[0]]++;
+                } else {
+                    hMap[arr[0]] = 1;
+                }
 
-                if (arr[0] != arr[1])
-                {
-                    int count2;
-                    hMap.TryGetValue(arr[1], out count2);
-                    count2++;
-                    hMap[arr[1]] = count2;
+                if (arr[0] != arr[1]) {
+                    if (hMap.ContainsKey(arr[1])) {
+                        hMap[arr[1]]++;
+                    } else {
+                        hMap[arr[1]] = 1;
+                    }
                 }
             }
 
