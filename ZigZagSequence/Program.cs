@@ -16,7 +16,7 @@ namespace ZigZagSequence {
         }
 
         public static void findZigZagSequence(int[] a, int n) {
-            Array.Sort(a);
+            Array.Sort(a); //1 2 3 4 5 6 7
             int mid = (n + 1) / 2 - 1;
 
             int temp = a[mid];
@@ -25,6 +25,7 @@ namespace ZigZagSequence {
 
             int start = mid + 1;
             int end = n - 2; //You don't toch the last number (n - 1) because it will be the smaller one on the right side
+
             while (start <= end) {
 
                 temp = a[start];
@@ -33,13 +34,17 @@ namespace ZigZagSequence {
 
                 start += 1;
                 end -= 1;
+
             }
+
             for (int i = 0; i < n; i++) {
+
                 if (i > 0) 
                     Console.Write(" ");
 
                 Console.Write(a[i]);                    
             }
+
             Console.WriteLine();
         }
     }

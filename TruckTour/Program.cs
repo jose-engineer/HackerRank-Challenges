@@ -25,12 +25,12 @@ namespace TruckTour {
 
             for (int i = 0; i < petrolpumps.Count - 1; i++) {
                 List<int> item = petrolpumps[i];
-
+                //petrolRemaining = petrolGivenByPump - distance    
                 petrol += item[0] - item[1];// -4 = 0 + 1 - 5         // petrol += petrolpumps[i][0] - petrolpumps[i][1]                               
                                             // 7 = 0 + 10 - 3
                                             // 6 = 7 + 3 - 4
-                if (petrol < 0) {
-                    start = i + 1;
+                if (petrol < 0) { //If petrol < 0 we are anticipating that the next item will be the start that we are looking for
+                    start = i + 1; //start = 1
                     petrol = 0;
                 }
             }
